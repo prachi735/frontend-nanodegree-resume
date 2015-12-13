@@ -1,5 +1,4 @@
-var bio;
-bio = {
+var bio = {
     "name": "Prachi Singh",
     "role": "Web Developer",
     "contacts": {
@@ -181,30 +180,34 @@ var projects = {
         "description": "The project dynamically builds a resume using javascript, html & css. It also embeds a google map.",
         "imagesSrc": ["images/frontend-nanodegree-resume-1.png", "images/frontend-nanodegree-resume-2.png", , "images/frontend-nanodegree-resume-3.png"],
         "smallImagesSrc": ["images/frontend-nanodegree-resume-1-100x.png", "images/frontend-nanodegree-resume-2-100x.png", , "images/frontend-nanodegree-resume-3-100x.png"]
-    },
+    }/*,
         {
-            "title": "Online Interactive Resume",
+     "title": "Online Interactive Resume2",
             "dates": "Dec 2015",
             "description": "The project dynamically builds a resume using javascript, html & css. It also embeds a google map.",
             "imagesSrc": ["images/frontend-nanodegree-resume-1.png", "images/frontend-nanodegree-resume-2.png", , "images/frontend-nanodegree-resume-3.png"],
             "smallImagesSrc": ["images/frontend-nanodegree-resume-1-100x.png", "images/frontend-nanodegree-resume-2-100x.png", , "images/frontend-nanodegree-resume-3-100x.png"]
-        }
+     }*/
     ],
     "display": function () {
         $("#projects").append(HTMLprojectStart);
         for (item in projects.projects) {
+            console.log(projects.projects[item].title);
             var formattedTitle = HTMLprojectTitle.replace(/%data%/g, projects.projects[item].title);
             var formattedDates = HTMLprojectDates.replace("%data%", projects.projects[item].dates);
             var formattedDescription = HTMLprojectDescription.replace("%data%", projects.projects[item].description);
-            $(".project-entry").prepend(formattedDescription)
-                .prepend(formattedDates)
-                .prepend(formattedTitle);
-
+            $(".project-entry").append(formattedTitle)
+                .append(formattedDates)
+                .append(formattedDescription);
+            $(".project-entry").append(HTMLprojectImagesStart);
+            console.log(projects.projects[item].imagesSrc.length);
             for (itemImg in projects.projects[item].imagesSrc) {
+                console.log(projects.projects[item].imagesSrc[itemImg]);
                 var formattedImage = HTMLprojectImage.replace(/%dataImg%/g, projects.projects[item].imagesSrc[itemImg]);
                 formattedImage = formattedImage.replace(/%dataTitle%/g, projects.projects[item].title);
                 formattedImage = formattedImage.replace(/%dataSmallImg%/g, projects.projects[item].smallImagesSrc[itemImg]);
                 $(".project-images").append(formattedImage);
+
             }
         }
     },
@@ -213,8 +216,6 @@ var projects = {
             var formattedNav = HTMLnavListDdl.replace("%dataTitle%", "Projects");
             $("#navList").append(formattedNav);
             for (item in projects.projects) {
-                //HTMLnavListLi.replace("%dataTitle%","Work Experience").replace("%dataLoc%","#workExperience");
-                console.log(projects.projects[item].title);
                 var formattedNavLi = HTMLnavListLi.replace("%dataTitle%", projects.projects[item].title).replace("%dataLoc%", "#" + projects.projects[item].title);
                 $("#navListMenu").append(formattedNavLi);
             }

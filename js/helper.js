@@ -22,10 +22,11 @@ var HTMLworkDates = '<div class="date-text">%data%</div>';
 var HTMLworkLocation = '<div class="location-text">%data%</div>';
 var HTMLworkDescription = '<p class="description" ><br>%data%</p>';
 
-var HTMLprojectStart = '<div class="project-entry"><div class="flex-box"></div></div>';
+var HTMLprojectStart = '<div class="project-entry"></div>';
 var HTMLprojectTitle = '<a id="%data%" href="#">%data%</a>';
 var HTMLprojectDates = '<div class="date-text">%data%</div>';
 var HTMLprojectDescription = '<p class="description"><br>%data%</p>';
+var HTMLprojectImagesStart = '<div class="project-images"></div>';
 var HTMLprojectImage = '<a href="%dataImg%" rel="lightbox" data-lightbox="%dataTitle%" ><img src="%dataSmallImg%"></a>';
 
 var HTMLschoolStart = '<div class="education-entry"></div>';
@@ -129,7 +130,6 @@ function initializeMap() {
     // iterates through school locations and appends each location to
     // the locations array
     for (var school in education.schools) {
-        console.log("school: " + education.schools[school].location);
       locations.push(education.schools[school].location);
     }
 
@@ -138,8 +138,8 @@ function initializeMap() {
     for (var job in work.jobs) {
       locations.push(work.jobs[job].location);
     }
-      console.log(locations);
-    return locations;
+
+      return locations;
   }
 
   /*
