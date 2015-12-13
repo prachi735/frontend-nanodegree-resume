@@ -1,4 +1,5 @@
-var bio = {
+var bio;
+bio = {
     "name": "Prachi Singh",
     "role": "Web Developer",
     "contacts": {
@@ -36,7 +37,6 @@ var bio = {
         $("#header").append(HTMLskillsStart);
         for (skill in bio.skills) {
             var formattedSkills = HTMLskills.replace("%data%", bio.skills[skill]);
-            console.log(bio.skills[skill]);
             $("#skills").append(formattedSkills);
         }
 
@@ -96,6 +96,12 @@ var education = {
             $(".education-entry:last").append(formattedTitle)
                 .append(formattedDates)
                 .append(formattedSchool);
+        }
+    },
+    "addToNav": function () {
+        if (education.schools.length > 0 || education.onlineCourses.length > 0) {
+            var formattedNav = HTMLnavListLi.replace("%dataTitle%", "Education").replace("%dataLoc%", "#education");
+            $("#navList").append(formattedNav);
         }
     }
 };
@@ -159,6 +165,12 @@ var work = {
                 .append(formattedLocation)
                 .append(formattedDescription);
         }
+    },
+    "addToNav": function () {
+        if (work.jobs.length > 0) {
+            var formattedNav = HTMLnavListLi.replace("%dataTitle%", "Work Experience").replace("%dataLoc%", "#workExperience");
+            $("#navList").append(formattedNav);
+        }
     }
 };
 
@@ -169,12 +181,19 @@ var projects = {
         "description": "The project dynamically builds a resume using javascript, html & css. It also embeds a google map.",
         "imagesSrc": ["images/frontend-nanodegree-resume-1.png", "images/frontend-nanodegree-resume-2.png", , "images/frontend-nanodegree-resume-3.png"],
         "smallImagesSrc": ["images/frontend-nanodegree-resume-1-100x.png", "images/frontend-nanodegree-resume-2-100x.png", , "images/frontend-nanodegree-resume-3-100x.png"]
-    }
+    },
+        {
+            "title": "Online Interactive Resume",
+            "dates": "Dec 2015",
+            "description": "The project dynamically builds a resume using javascript, html & css. It also embeds a google map.",
+            "imagesSrc": ["images/frontend-nanodegree-resume-1.png", "images/frontend-nanodegree-resume-2.png", , "images/frontend-nanodegree-resume-3.png"],
+            "smallImagesSrc": ["images/frontend-nanodegree-resume-1-100x.png", "images/frontend-nanodegree-resume-2-100x.png", , "images/frontend-nanodegree-resume-3-100x.png"]
+        }
     ],
     "display": function () {
         $("#projects").append(HTMLprojectStart);
         for (item in projects.projects) {
-            var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[item].title);
+            var formattedTitle = HTMLprojectTitle.replace(/%data%/g, projects.projects[item].title);
             var formattedDates = HTMLprojectDates.replace("%data%", projects.projects[item].dates);
             var formattedDescription = HTMLprojectDescription.replace("%data%", projects.projects[item].description);
             $(".project-entry").prepend(formattedDescription)
@@ -188,9 +207,25 @@ var projects = {
                 $(".project-images").append(formattedImage);
             }
         }
+    },
+    "addToNav": function () {
+        if (projects.projects.length > 0) {
+            var formattedNav = HTMLnavListDdl.replace("%dataTitle%", "Projects");
+            $("#navList").append(formattedNav);
+            for (item in projects.projects) {
+                //HTMLnavListLi.replace("%dataTitle%","Work Experience").replace("%dataLoc%","#workExperience");
+                console.log(projects.projects[item].title);
+                var formattedNavLi = HTMLnavListLi.replace("%dataTitle%", projects.projects[item].title).replace("%dataLoc%", "#" + projects.projects[item].title);
+                $("#navListMenu").append(formattedNavLi);
+            }
+        }
     }
 };
 
+
+work.addToNav();
+education.addToNav();
+projects.addToNav();
 
 education.display();
 work.display();
@@ -206,3 +241,21 @@ function inName(_name) {
 }
 
 //$("#main").append(internationalizeButton);
+$(window).scroll(function () {
+    if ($(this).scrollTop() > 50) {
+        $('#back-to-top').fadeIn();
+    } else {
+        $('#back-to-top').fadeOut();
+    }
+});
+// scroll body to 0px on clickK
+$('#back-to-top').click(function () {
+    $('#back-to-top').tooltip('hide');
+    $('body,html').animate({
+        scrollTop: 0
+    }, 800);
+    return false;
+});
+
+$('#back-to-top').tooltip('show');
+$('#back-to-top').hide();

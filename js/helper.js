@@ -23,7 +23,7 @@ var HTMLworkLocation = '<div class="location-text">%data%</div>';
 var HTMLworkDescription = '<p class="description" ><br>%data%</p>';
 
 var HTMLprojectStart = '<div class="project-entry"><div class="flex-box"></div></div>';
-var HTMLprojectTitle = '<a href="#">%data%</a>';
+var HTMLprojectTitle = '<a id="%data%" href="#">%data%</a>';
 var HTMLprojectDates = '<div class="date-text">%data%</div>';
 var HTMLprojectDescription = '<p class="description"><br>%data%</p>';
 var HTMLprojectImage = '<a href="%dataImg%" rel="lightbox" data-lightbox="%dataTitle%" ><img src="%dataSmallImg%"></a>';
@@ -44,7 +44,19 @@ var HTMLonlineURL = '<br><a href="#">%data%</a>';
 var internationalizeButton = '<button>Internationalize</button>';
 var googleMap = '<div id="map"></div>';
 
+var HTMLnavListLi = '<li><a href="%dataLoc%">%dataTitle%</a></li>';
 
+/*<li class="dropdown">
+ <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Projects<span class="caret"></span></a>
+ <ul class="dropdown-menu" role="menu">
+ <li><a href="#">Action</a></li>
+ <li><a href="#">Another action</a></li>
+ <li><a href="#">Something else here</a></li>
+ </li>*/
+
+var HTMLnavListDdl = '<li class="dropdown"> \
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">%dataTitle% \
+    <b class="caret"></b></a><ul id="navListMenu" class="dropdown-menu" role="menu"></ul>';
 /*
  The International Name challenge in Lesson 2 where you'll create a function that will need this helper code to run. Don't delete! It hooks up your code to the button you'll be appending.
  */
